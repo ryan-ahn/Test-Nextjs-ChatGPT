@@ -5,6 +5,7 @@
  */
 
 import { useState } from 'react';
+import ReactMarkDown from 'react-markdown';
 import styled from 'styled-components';
 import { TEXT } from '@containers/text';
 import { useStore } from '@lib/zustand/store';
@@ -14,6 +15,7 @@ export default function Mainindex() {
   const { message, isLoading, chatCompletionsApi } = useStore();
   const [country, setCountry] = useState('');
   const [city, setCity] = useState('');
+  const [activity, setActivity] = useState('');
   const [schedule, setSchedule] = useState('');
   const [question, setQuestion] = useState('');
 
@@ -21,6 +23,7 @@ export default function Mainindex() {
     chatCompletionsApi({
       country,
       city,
+      activity,
       schedule,
       question,
     });
@@ -43,6 +46,10 @@ export default function Mainindex() {
             <InputBox onChange={e => setCity(e.target.value)} />
           </InputBlock>
           <InputBlock>
+            <LabelText>{TEXT.main.activity}</LabelText>
+            <InputBox onChange={e => setActivity(e.target.value)} />
+          </InputBlock>
+          <InputBlock>
             <LabelText>{TEXT.main.schedule}</LabelText>
             <InputBox onChange={e => setSchedule(e.target.value)} />
           </InputBlock>
@@ -60,7 +67,8 @@ export default function Mainindex() {
               <LoadingSpinner />
             </LoadingWrapper>
           ) : (
-            message
+            // eslint-disable-next-line react/no-children-prop
+            <ReactMarkDown children={message} />
           )}
         </GptArea>
       </ContentBlock>
@@ -127,8 +135,9 @@ const GptArea = styled.div`
   ${({ theme }) => theme.boxSet('700px', '60vh', '10px')};
   ${({ theme }) => theme.colorSet('black', 'white')};
   padding: 25px;
-  ${({ theme }) => theme.fontSet(14, 400, 20)};
+  ${({ theme }) => theme.fontSet(14, 400, 17)};
   white-space: pre-wrap;
+  overflow: scroll;
 `;
 
 const LoadingWrapper = styled.div`
