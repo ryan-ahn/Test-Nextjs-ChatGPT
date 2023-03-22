@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -13,11 +15,29 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true,
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@components/*": ["components/*"],
+      "@lib/*": ["lib/*"],
+      "@language/*": ["language/*"],
+      "@containers/*": ["containers/*"],
+      "@styles/*": ["styles/*"]
+    },
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin",
+        "tags": ["styled", "css", "sty"]
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "pages/_document.js",
+    "pages/_document.js",
+    "lib/utils/googleAnalytics.js",
+    "pages/test.js"
+  ]
 }
