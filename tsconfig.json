@@ -38,6 +38,8 @@
     "pages/_document.js",
     "pages/_document.js",
     "lib/utils/googleAnalytics.js",
-    "pages/test.js"
+    "pages/test.js",
+    "components/main/step2.js",
+    "components/main/step2.js"
   ]
 }
